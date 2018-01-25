@@ -35,10 +35,10 @@
                 <h3>Sign up</h3>
               <div class="ui segment">
 
-                <form id="form1" class="ui form" action="" method="post">
+                <form id="form1" class="ui form" action="includes/signup.php" method="post">
                      <div class="field">
                          <label>Username</label>
-                         <input  type="text" name="username" placeholder="Username">
+                         <input  type="text" name="user_name" placeholder="Username">
                      </div>
                      <div class="field">
                         <label>First Name</label>
@@ -56,7 +56,7 @@
                         <label>Last Name</label>
                         <input  type="password" name="passwd" placeholder="Password">
                     </div>
-                    <button id="button1" class="ui negative button">Sign up</button>
+                    <button name="submit" type="submit" id="button1" class="ui negative button">Sign up</button>
                 </form>
             </div>
         </div>
@@ -72,7 +72,7 @@
                     <label>Last Name</label>
                     <input  type="password" name="passwd" placeholder="Password">
                 </div>
-                <button class="ui primary button">Login</button>
+                <button class="ui primary button">Login</button> <button class="ui negative button">Forgot password?</button>
             </form>
             </div>
         </div>
