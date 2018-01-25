@@ -22,9 +22,23 @@
         </a>
 
         <div class="right menu">
-            <a class="ui item">
-                <i class="alarm icon"></i> Notification
-            </a>
+            <?php
+            session_start();
+            if (isset($_SESSION['username']))
+            {
+                echo "
+                <a class='ui item'>
+                    <i class='alarm icon'></i>Notification
+                </a>
+                <a class='ui item'>
+                    <i class='user icon'></i>".$_SESSION['username']."
+                </a>
+                <a href='index.php?logout' class='ui item'>
+                    <i class='remove user icon'></i>Logout
+                </a>
+                ";
+            }
+            ?>
         </div>
     </div>
 
