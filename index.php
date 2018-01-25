@@ -80,6 +80,17 @@ else if (isset($_GET['verify']) && $_GET['verify'] == 1 && isset($_GET['email'])
     <title>Home</title>
 </head>
 <body>
+    <?php
+    session_start();
+    if (isset($_SESSION['username']))
+    {
+        echo "<div id='yeah' onload='switchDiv(1)'>Session on</div>";
+    }
+    else
+    {
+        echo "<div onload='switchDiv(0)'>Session off</div>";
+    }
+    ?>
     <div class="ui massive secondary pointing menu">
         <a class="item active">
             <i class="home icon"></i> Home
@@ -111,7 +122,7 @@ else if (isset($_GET['verify']) && $_GET['verify'] == 1 && isset($_GET['email'])
                     <i class='user icon'></i>".$_SESSION['username']."
                 </a>
                 <a href='index.php?logout' class='ui item'>
-                    <i class='remove user icon'></i>Logout
+                    <i class='power icon'></i>Logout
                 </a>
                 ";
             }
@@ -119,7 +130,7 @@ else if (isset($_GET['verify']) && $_GET['verify'] == 1 && isset($_GET['email'])
         </div>
     </div>
 
-    <div id="test" onload="hideThis()" class="ui three column grid">
+    <div id="test" onload="switchDiv()" class="ui three column grid">
             <div class="column">
                 <?php
                 if (isset($_GET['verify']) && $_GET['verify'] == 0)
@@ -153,6 +164,17 @@ else if (isset($_GET['verify']) && $_GET['verify'] == 1 && isset($_GET['email'])
                             <i onclick='closeMsg()' class='close icon'></i>
                             <div class='header'>
                                 Username is not available. Try a different one.
+                            </div>
+                        </div>
+                        ";
+                    }
+                    else if ($_GET['signup'] == 'empty')
+                    {
+                        echo "
+                        <div id='pmsg' class='ui negative message'>
+                            <i onclick='closeMsg()' class='close icon'></i>
+                            <div class='header'>
+                                Fields are empty. Please fill up the form correctly.
                             </div>
                         </div>
                         ";

@@ -1,6 +1,7 @@
-/*window.onload = function(){
-    document.getElementById('test').style.display = 'none';
-}*/
+function switchDiv()
+{
+    alert("Yooooo");
+}
 
 function closeMsg(){
     var id = document.getElementById("pmsg");

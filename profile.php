@@ -34,7 +34,7 @@
                     <i class='user icon'></i>".$_SESSION['username']."
                 </a>
                 <a href='index.php?logout' class='ui item'>
-                    <i class='remove user icon'></i>Logout
+                    <i class='power icon'></i>Logout
                 </a>
                 ";
             }
