@@ -81,7 +81,6 @@ else if (isset($_GET['verify']) && $_GET['verify'] == 1 && isset($_GET['email'])
 </head>
 <body>
     <?php
-    session_start();
     if (isset($_SESSION['username']))
     {
         echo "<div id='yeah' onload='switchDiv(1)'>Session on</div>";
@@ -96,8 +95,7 @@ else if (isset($_GET['verify']) && $_GET['verify'] == 1 && isset($_GET['email'])
             <i class="home icon"></i> Home
         </a>
         <?php
-        session_start();
-        if ($_SESSION['username'])
+        if (isset($_SESSION['username']))
         {
             echo "
             <a class='item' href='profile.php'>
@@ -111,7 +109,6 @@ else if (isset($_GET['verify']) && $_GET['verify'] == 1 && isset($_GET['email'])
 
         <div class="right menu">
             <?php
-            session_start();
             if (isset($_SESSION['username']))
             {
                 echo "

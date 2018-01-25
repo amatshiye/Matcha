@@ -44,14 +44,59 @@
 
     <!--body... for real-->
     <div class="ui three column grid">
-        <div class="column">
+        <div id="demo" class="column">
             <div class="ui segment">
+            <?php
+
+            require_once('config/database.php');
+            $username = $_SESSION['username'];
+
+            try
+            {
+                $conn = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                $stmt = $conn->prepare("SELECT * FROM users WHERE user_name = :username");
+                $stmt->execute(array(':username' => $username));
+
+                $results = $stmt->fetchAll();
+
+                foreach($results as $row)
+                {
+                    if (isset($row['profilepic']))
+                    {
+                        echo "<img class='ui medium circular image' src='{$row["profilepic"]}'><br>";
+                        echo "<button onclick='editPic()' class='ui positive button'><i class='image icon'></i>change profile picture</button>
+                        <button onclick='showDivMan()' class='ui button'><i class='write icon'></i>edit profile</button>";
+                    }
+                    else
+                    {
+                        echo "<img class='ui medium circular image' src=''>";
+                    }
+                    echo "<br><br>
+                    <div class='ui tag red label'>Username: <div class='detail'>{$row["user_name"]}</div></div><br>
+                    <div class='ui tag blue label'>First Name: <div class='detail'>{$row["first_name"]}</div></div><br>
+                    <div class='ui tag red label'>Last Name: <div class='detail'>{$row["last_name"]}</div></div><br>
+                    <div class='ui tag blue label'>Email: <div class='detail'>{$row["email"]}</div></div><br><br>
+                    <button onclick='interests()' class='ui black button'><i class='write icon'></i>edit interests</button>";
+                    
+
+                }
+            }
+            catch(PDOException $e)
+            {
+                header("Location: profile.php?server_error");
+            }
+            ?>
 
             </div>
         </div>
         <div class="column">
             <div class="ui segment">
                 
+            <div id="#summary">This text will be replaced when the onclick event (link is clicked) is triggered.</div>
+
+
             </div>
         </div>
         <div class="column">
@@ -66,6 +111,33 @@
         </div>
 
     </div>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
+    <script>
+    function showDivMan()
+    {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("#summary").innerHTML =
+            this.responseText;
+          }
+        };
+        xhttp.open("GET", "divdata.php", true);
+        xhttp.send();
+    }
+
+    function editPic()
+    {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("#summary").innerHTML =
+            this.responseText;
+          }
+        };
+        xhttp.open("GET", "editpic.php", true);
+        xhttp.send();
+    }
+    </script>
 </body>
 </html>
