@@ -27,9 +27,46 @@
         </div>
     </div>
 
-    <div class="ui three column grid">
+    <div id="test" onload="hideThis()" class="ui three column grid">
             <div class="column">
-                
+                <?php
+                if (isset($_GET['verify']) && $_GET['verify'] == 0)
+                {
+                    echo "
+                    <div id='pmsg' class='ui positive message'>
+                        <i onclick='closeMsg()' class='close icon'></i>
+                        <div class='header'>
+                            A varification link has been sent to your account
+                        </div>
+                    </div>
+                    ";
+                }
+                else if (isset($_GET['signup'])){
+                    if ($_GET['signup'] == 'email')
+                    {
+                        echo "
+                        <div id='pmsg' class='ui negative message'>
+                            <i onclick='closeMsg()' class='close icon'></i>
+                            <div class='header'>
+                                This email is already registered.<br>
+                                Use a different email or login.
+                            </div>
+                        </div>
+                        ";
+                    }
+                    else if ($_GET['signup'] == 'username')
+                    {
+                        echo "
+                        <div id='pmsg' class='ui negative message'>
+                            <i onclick='closeMsg()' class='close icon'></i>
+                            <div class='header'>
+                                Username is not available. Try a different one.
+                            </div>
+                        </div>
+                        ";
+                    }
+                }
+                ?>
             </div>
             <div class="column">
                 <h3>Sign up</h3>
@@ -61,18 +98,20 @@
             </div>
         </div>
         <div class="column">
+
+        <!--Login part -->
             <h3>Login</h3>
             <div class="ui segment">
             <form id="form2" class="ui form" action="" method="post">
                 <div class="field">
                     <label>Username or Email</label>
-                    <input  type="text" name="username" placeholder="Username/Email">
+                    <input type="text" name="login" placeholder="Username/Email">
                 </div>
                 <div class="field">
                     <label>Last Name</label>
                     <input  type="password" name="passwd" placeholder="Password">
                 </div>
-                <button class="ui primary button">Login</button> <button class="ui negative button">Forgot password?</button>
+                <button formaction="includes/login.inc.php" name="submit" class="ui primary button">Login</button> <button formaction="#" id="forgot" type="popup" class="ui negative button">Forgot password?</button>
             </form>
             </div>
         </div>

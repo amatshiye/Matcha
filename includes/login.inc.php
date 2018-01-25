@@ -1,6 +1,6 @@
 <?php
 
-require_once('database.php');
+require_once('../config/database.php');
 session_start();
 
 if (isset($_POST['submit']))
@@ -10,7 +10,7 @@ if (isset($_POST['submit']))
 
     if (empty($login) || empty($passwd))
     {
-        header("Location: ../login.php?login=empty");
+        header("Location: ../index.php?login=empty");
         exit();
     }
     else
@@ -39,17 +39,17 @@ if (isset($_POST['submit']))
                         {
                             mkdir("upload/".$folder_name);
                         }
-                        header("Location: ../login.php?verify=1");
+                        header("Location: ../index.php?verify=1");
                         exit();
                     }
                     else if ($row['active'] == 0)
                     {
-                        header("Location: ../login.php?verify=0");
+                        header("Location: ../index.php?verify=0");
                         exit();
                     }
                     else
                     {
-                        header("Location: ../login.php?user=invalid");
+                        header("Location: ../index.php?user=invalid");
                         exit();
                     }
                 }
@@ -57,20 +57,20 @@ if (isset($_POST['submit']))
             else
             {
                 //if the user is not found
-                header("Location: ../login.php?user=not_found");
+                header("Location: ../index.php?user=not_found");
                 exit();
             }
         }
         catch(PDOException $e)
         {
-            header("location: ../login.php?server=error");
+            header("location: ../index.php?server=error");
             exit();
         }
     }
 }
 else
 {
-    header("Location: login.php");
+    header("Location: index.php");
     exit();
 }
 ?>
