@@ -111,9 +111,7 @@ try
                 $stmt = $conn->prepare('CREATE TABLE pictures (
                     id int(11) not null PRIMARY KEY AUTO_INCREMENT,
                     name varchar(255) not null,
-                    user varchar(255) not null,
-                    type varchar(5) not null,
-                    ext varchar(5) not null
+                    user varchar(255) not null 
                     );'
                 );
                 //executing the query

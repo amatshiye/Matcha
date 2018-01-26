@@ -116,7 +116,7 @@ else if (isset($_GET['verify']) && $_GET['verify'] == 1 && isset($_GET['email'])
                     <i class='alarm icon'></i>Notification
                 </a>
                 <a class='ui item'>
-                    <i class='user icon'></i>".$_SESSION['username']."
+                    <i class='hashtag icon'></i>".$_SESSION['username']."
                 </a>
                 <a href='index.php?logout' class='ui item'>
                     <i class='power icon'></i>Logout

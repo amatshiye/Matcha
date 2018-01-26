@@ -20,7 +20,7 @@ if (isset($_POST['submit']))
     <title>Document</title>
 </head>
 <body>
-    <h3 class="ui header"><i class="settings icon"></i>Edit Profile</h3>
+    <h3 class="ui header"><i class="settings icon"></i>edit profile</h3>
     <form method="POST" action="divdata.php" class="ui form">
         <div class="field">
             <label>Username</label>
