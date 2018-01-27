@@ -63,7 +63,10 @@ try
             passwd varchar(255) not null,
             active int(1) not null DEFAULT 0,
             con_code varchar(255) not null, 
-            noti int(1) not null DEFAULT 1
+            noti int(1) not null DEFAULT 1,
+            gender varchar(10) not null,
+            age varchar(2) not null,
+            s_pref varchar(10) not null
             );'
         );
         //executing the query
@@ -75,18 +78,16 @@ try
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             
             //Preparing the query
-            echo "Creating table : comments <br/>";
-            $stmt = $conn->prepare('CREATE TABLE comments (
+            echo "Creating table : interests <br/>";
+            $stmt = $conn->prepare('CREATE TABLE interests (
                 id int(11) not null PRIMARY KEY AUTO_INCREMENT,
-                name varchar(255) not null,
                 user_name varchar(255) not null,
-                user_image varchar(255) not null,
-                comment varchar(255) not null
+                interests varchar(255) not null
                 );'
             );
             //executing the query
             $stmt->execute();
-            echo "Table comments created! <br/>";
+            echo "Table interests created! <br/>";
             echo "Creating table : likes <br/>";
 
             $conn = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);

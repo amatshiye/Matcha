@@ -77,7 +77,7 @@ if (isset($_GET['limit_reached']))
                         echo "<button onclick='editPic()' class='ui positive button'><i class='image icon'></i>change profile picture</button>
                         <button onclick='showDivMan()' class='ui button'><i class='write icon'></i>edit profile</button>";
                     }
-                    else
+                    else    
                     {
                         echo "<img class='ui medium circular image' src='https://goo.gl/XY5dge'><br><br>";
                         echo "<button onclick='editPic()' class='ui positive button'><i class='image icon'></i>change profile picture</button>
@@ -87,7 +87,20 @@ if (isset($_GET['limit_reached']))
                     <div class='ui tag red label'>Username: <div class='detail'>{$row["user_name"]}</div></div><br>
                     <div class='ui tag blue label'>First Name: <div class='detail'>{$row["first_name"]}</div></div><br>
                     <div class='ui tag red label'>Last Name: <div class='detail'>{$row["last_name"]}</div></div><br>
-                    <div class='ui tag blue label'>Email: <div class='detail'>{$row["email"]}</div></div><br><br>
+                    <div class='ui tag blue label'>Email: <div class='detail'>{$row["email"]}</div></div><br>";
+                    if (!empty($row['gender']))
+                    {
+                        echo "<div class='ui tag red label'>Gender: <div class='detail'>{$row["gender"]}</div></div><br>";
+                    }
+                    if (!empty($row['s_pref']))
+                    {
+                        echo "<div class='ui tag blue label'>Sexual Preference: <div class='detail'>{$row["s_pref"]}</div></div><br>";
+                    }
+                    if (!empty($row['age']))
+                    {
+                        echo "<div class='ui tag red label'>Age: <div class='detail'>{$row["age"]}</div></div><br>";
+                    }
+                    echo "<br><br>
                     <button onclick='interests()' class='ui black button'><i class='write icon'></i>edit interests</button><br><br>
                     <button onclick='photos()' class='ui silver button'><i class='photo icon'></i>my pictures</button>";
                 }
@@ -171,6 +184,19 @@ if (isset($_GET['limit_reached']))
           }
         };
         xhttp.open("GET", "editpic.php", true);
+        xhttp.send();
+    }
+
+    function interests()
+    {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("#summary").innerHTML =
+            this.responseText;
+          }
+        };
+        xhttp.open("GET", "interests.php", true);
         xhttp.send();
     }
     </script>

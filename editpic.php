@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h3 class="ui header"><i class="image icon"></i>edit profile picture</h3>
+    <h3 class="ui header"><i class="image icon"></i>Edit Profile Picture</h3>
     <form class="ui form" action="includes/upload.php" method="POST" enctype="multipart/form-data">
         <img id="pic" class="ui medium circular image" src="">
         <div class="ui input">
@@ -16,6 +16,5 @@
         <br><br>
         <button onclick="newPic()" class="ui primary button">make profile picture</button>
     </form>
-
 </body>
 </html>

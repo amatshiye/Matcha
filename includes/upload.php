@@ -24,29 +24,29 @@ if (isset($_POST['submit']))
     $img_size = getimagesize($_FILES["fileToUpload"]['tmp_name']);
     if ($img_size == false)
     {
-        //header()
-        //exit()
+        header("Location: ../profile.php?invalid_file");
+        exit();
     }
 }
 
 if (file_exists($target_file))
 {
-    //header file exists
-    //exit();
+    header("Location: ../profile.php?file_exists");
+    exit();
 }
 
 //checking image size
-if ($_FILES["fileToUpload"]["size"] > 500000)
+if ($_FILES["fileToUpload"]["size"] > 900000)
 {
-    //header file too large
-    //exit()
+    header("Location: ../profile.php?large");
+    exit();
 }
 
 //allowing certain file formats
 if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif")
 {
-    //file type not allowed
-    //exit()
+    header("Location: ../profile.php?file_type");
+    exit();
 }
 
 if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file))

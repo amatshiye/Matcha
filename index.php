@@ -7,6 +7,7 @@ session_start();
 if (isset($_GET['logout']))
 {
     session_destroy();
+    header("Location: index.php");
 }
 else if (isset($_GET['verify']) && $_GET['verify'] == 1 && isset($_GET['email']) && isset($_GET['code']) && isset($_GET['com']))
 {
