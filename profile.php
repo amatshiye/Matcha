@@ -87,7 +87,30 @@ if (isset($_GET['limit_reached']))
                     <div class='ui tag red label'>Username: <div class='detail'>{$row["user_name"]}</div></div><br>
                     <div class='ui tag blue label'>First Name: <div class='detail'>{$row["first_name"]}</div></div><br>
                     <div class='ui tag red label'>Last Name: <div class='detail'>{$row["last_name"]}</div></div><br>
-                    <div class='ui tag blue label'>Email: <div class='detail'>{$row["email"]}</div></div><br>";
+                    <div class='ui tag blue label'>Email: <div class='detail'>{$row["email"]}</div></div><br>
+                    <h3 class=''ui header'><i class='hashtag icon'></i>my interests</h3>";
+                    try
+                    {
+                        $conn = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
+                        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                        $stmt = $conn->prepare("SELECT * FROM interests WHERE user_name = :username");
+                        $stmt->execute(array(':username' => $username));
+                        $res = $stmt->fetch(PDO::FETCH_ASSOC);
+                        $interests = unserialize($res['interests']);
+                        foreach ($interests as $key)
+                        {
+                            if (!empty($key))
+                            {
+                                echo "<div class='ui tag black label'><div class='detail'>{$key}</div></div><br>";
+                            }
+                        }
+                    }
+                    catch(PDOException $e)
+                    {
+                        header("Location: profile.php?server=error");
+                        exit();
+                    }
                     if (!empty($row['gender']))
                     {
                         echo "<div class='ui tag red label'>Gender: <div class='detail'>{$row["gender"]}</div></div><br>";
