@@ -66,7 +66,8 @@ try
             noti int(1) not null DEFAULT 1,
             gender varchar(10) not null,
             age varchar(2) not null,
-            s_pref varchar(10) not null
+            s_pref varchar(10) not null,
+            location varchar(255) not null
             );'
         );
         //executing the query

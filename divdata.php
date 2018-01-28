@@ -32,6 +32,37 @@ if (isset($_POST['submit']))
         if (empty($username))
         {
             $username = $row['user_name'];
+            //updating the name of the user in interests table
+            try
+            {
+                $conn = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                $stmt1 = $conn->prepare("UPDATE interests SET user_name = :username WHERE user_name = :user");
+                $stmt1->execute(array(':username' => $username, ':user' => $db_username));
+            }
+            catch(PDOException $e)
+            {
+                header("Location: profile.php?server=error");
+                exit();
+            }
+        }
+        else
+        {
+            //updating the name of the user in interests table
+            try
+            {
+                $conn = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                $stmt1 = $conn->prepare("UPDATE interests SET user_name = :username WHERE user_name = :user");
+                $stmt1->execute(array(':username' => $username, ':user' => $db_username));
+            }
+            catch(PDOException $e)
+            {
+                header("Location: profile.php?server=error");
+                exit();
+            }
         }
         if (empty($first))
         {

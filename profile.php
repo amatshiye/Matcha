@@ -87,8 +87,12 @@ if (isset($_GET['limit_reached']))
                     <div class='ui tag red label'>Username: <div class='detail'>{$row["user_name"]}</div></div><br>
                     <div class='ui tag blue label'>First Name: <div class='detail'>{$row["first_name"]}</div></div><br>
                     <div class='ui tag red label'>Last Name: <div class='detail'>{$row["last_name"]}</div></div><br>
-                    <div class='ui tag blue label'>Email: <div class='detail'>{$row["email"]}</div></div><br>
-                    <h3 class=''ui header'><i class='hashtag icon'></i>my interests</h3>";
+                    <div class='ui tag blue label'>Email: <div class='detail'>{$row["email"]}</div></div><br>";
+                    if (!empty($row['location']))
+                    {
+                        echo "<div class='ui tag red label'>Location: <div class='detail'>{$row["location"]}</div></div><br>";
+                    }
+                    echo "<h3 class=''ui header'><i class='hashtag icon'></i>my interests</h3>";
                     try
                     {
                         $conn = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
@@ -97,12 +101,16 @@ if (isset($_GET['limit_reached']))
                         $stmt = $conn->prepare("SELECT * FROM interests WHERE user_name = :username");
                         $stmt->execute(array(':username' => $username));
                         $res = $stmt->fetch(PDO::FETCH_ASSOC);
-                        $interests = unserialize($res['interests']);
-                        foreach ($interests as $key)
+
+                        if (!empty($res['interests']))
                         {
-                            if (!empty($key))
+                            $interests = unserialize($res['interests']);
+                            foreach ($interests as $key)
                             {
-                                echo "<div class='ui tag black label'><div class='detail'>{$key}</div></div><br>";
+                                if (!empty($key))
+                                {
+                                    echo "<div class='ui tag black label'><div class='detail'>{$key}</div></div><br>";
+                                }
                             }
                         }
                     }
@@ -124,8 +132,9 @@ if (isset($_GET['limit_reached']))
                         echo "<div class='ui tag red label'>Age: <div class='detail'>{$row["age"]}</div></div><br>";
                     }
                     echo "<br><br>
-                    <button onclick='interests()' class='ui black button'><i class='write icon'></i>edit interests</button><br><br>
-                    <button onclick='photos()' class='ui silver button'><i class='photo icon'></i>my pictures</button>";
+                    <button onclick='getUserLocation()' class='ui purple button'><i class='map icon'></i>set location</button><br>
+                    <button onclick='interests()' class='ui black button'><i class='write icon'></i>edit interests</button><br>
+                    <button onclick='photos()' class='ui red button'><i class='photo icon'></i>my pictures</button>";
                 }
             }
             catch(PDOException $e)
@@ -220,6 +229,18 @@ if (isset($_GET['limit_reached']))
           }
         };
         xhttp.open("GET", "interests.php", true);
+        xhttp.send();
+    }
+    function getUserLocation()
+    {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("#summary").innerHTML =
+            this.responseText;
+          }
+        };
+        xhttp.open("GET", "location.php", true);
         xhttp.send();
     }
     </script>
