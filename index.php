@@ -216,7 +216,7 @@ else if (isset($_GET['verify']) && $_GET['verify'] == 1 && isset($_GET['email'])
                         <label>Last Name</label>
                         <input  type="password" name="passwd" placeholder="Password">
                     </div>
-                    <button name="submit" type="submit" id="button1" class="ui negative button">Sign up</button>
+                    <button name="submit" type="submit" id="button1" class="ui black button">Sign up</button>
                 </form>
             </div>
         </div>
@@ -234,11 +234,12 @@ else if (isset($_GET['verify']) && $_GET['verify'] == 1 && isset($_GET['email'])
                     <label>Password</label>
                     <input  type="password" name="passwd" placeholder="Password">
                 </div>
-                <button formaction="includes/login.inc.php" name="submit" class="ui primary button">Login</button> <button formaction="#" id="forgot" type="popup" class="ui negative button">Forgot password?</button>
+                <button formaction="includes/login.inc.php" name="submit" class="ui black button">Login</button> <button formaction="#" id="forgot" type="popup" class="ui black button">Forgot password?</button>
             </form>
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
     <script type="text/javascript" src="src/styles.js">
     </script>

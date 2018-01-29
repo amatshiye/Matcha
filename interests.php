@@ -59,7 +59,7 @@
             <input name="animals" value="animals" type="checkbox">
             <label>animals</label>
         </div>
-        <br><br><button name="submit" class="ui pink button">save interests</button>
+        <br><br><button name="submit" class="ui black button">save interests</button>
     </form>
     
 </body>

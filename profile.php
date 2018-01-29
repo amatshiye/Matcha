@@ -1,5 +1,9 @@
 <?php
 
+if (isset($_GET['addr']))
+{
+    die($_GET['addr']);
+}
 if (isset($_GET['limit_reached']))
 {
     echo "<script>alert('Maximum number of photos reached. You can only have 5 maximum')</script>";
@@ -74,23 +78,23 @@ if (isset($_GET['limit_reached']))
                     if (isset($row['profilepic']))
                     {
                         echo "<img class='ui medium circular image' src='{$row["profilepic"]}'><br>";
-                        echo "<button onclick='editPic()' class='ui positive button'><i class='image icon'></i>change profile picture</button>
-                        <button onclick='showDivMan()' class='ui button'><i class='write icon'></i>edit profile</button>";
+                        echo "<button onclick='editPic()' class='ui black button'><i class='image icon'></i>change profile picture</button>
+                        <button onclick='showDivMan()' class='ui black button'><i class='write icon'></i>edit profile</button>";
                     }
                     else    
                     {
                         echo "<img class='ui medium circular image' src='https://goo.gl/XY5dge'><br><br>";
-                        echo "<button onclick='editPic()' class='ui positive button'><i class='image icon'></i>change profile picture</button>
-                        <button onclick='showDivMan()' class='ui button'><i class='write icon'></i>edit profile</button>";
+                        echo "<button onclick='editPic()' class='ui black button'><i class='image icon'></i>change profile picture</button>
+                        <button onclick='showDivMan()' class='ui black button'><i class='write icon'></i>edit profile</button>";
                     }
                     echo "<br><br>
-                    <div class='ui tag red label'>Username: <div class='detail'>{$row["user_name"]}</div></div><br>
-                    <div class='ui tag blue label'>First Name: <div class='detail'>{$row["first_name"]}</div></div><br>
-                    <div class='ui tag red label'>Last Name: <div class='detail'>{$row["last_name"]}</div></div><br>
-                    <div class='ui tag blue label'>Email: <div class='detail'>{$row["email"]}</div></div><br>";
+                    <div class='ui tag label'>Username: <div class='detail'>{$row["user_name"]}</div></div><br>
+                    <div class='ui tag label'>First Name: <div class='detail'>{$row["first_name"]}</div></div><br>
+                    <div class='ui tag label'>Last Name: <div class='detail'>{$row["last_name"]}</div></div><br>
+                    <div class='ui tag label'>Email: <div class='detail'>{$row["email"]}</div></div><br>";
                     if (!empty($row['location']))
                     {
-                        echo "<div class='ui tag red label'>Location: <div class='detail'>{$row["location"]}</div></div><br>";
+                        echo "<div class='ui tag label'>Location: <div class='detail'>{$row["location"]}</div></div><br>";
                     }
                     echo "<h3 class=''ui header'><i class='hashtag icon'></i>my interests</h3>";
                     try
@@ -109,7 +113,7 @@ if (isset($_GET['limit_reached']))
                             {
                                 if (!empty($key))
                                 {
-                                    echo "<div class='ui tag black label'><div class='detail'>{$key}</div></div><br>";
+                                    echo "<div class='ui tag label'><div class='detail'>{$key}</div></div><br>";
                                 }
                             }
                         }
@@ -121,20 +125,20 @@ if (isset($_GET['limit_reached']))
                     }
                     if (!empty($row['gender']))
                     {
-                        echo "<div class='ui tag red label'>Gender: <div class='detail'>{$row["gender"]}</div></div><br>";
+                        echo "<div class='ui tag label'>Gender: <div class='detail'>{$row["gender"]}</div></div><br>";
                     }
                     if (!empty($row['s_pref']))
                     {
-                        echo "<div class='ui tag blue label'>Sexual Preference: <div class='detail'>{$row["s_pref"]}</div></div><br>";
+                        echo "<div class='ui tag label'>Sexual Preference: <div class='detail'>{$row["s_pref"]}</div></div><br>";
                     }
                     if (!empty($row['age']))
                     {
-                        echo "<div class='ui tag red label'>Age: <div class='detail'>{$row["age"]}</div></div><br>";
+                        echo "<div class='ui tag label'>Age: <div class='detail'>{$row["age"]}</div></div><br>";
                     }
                     echo "<br><br>
-                    <button onclick='getUserLocation()' class='ui purple button'><i class='map icon'></i>set location</button><br>
+                    <button onclick='getUserLocation()' class='ui black button'><i class='map icon'></i>set location</button><br>
                     <button onclick='interests()' class='ui black button'><i class='write icon'></i>edit interests</button><br>
-                    <button onclick='photos()' class='ui red button'><i class='photo icon'></i>my pictures</button>";
+                    <button onclick='photos()' class='ui black button'><i class='photo icon'></i>my pictures</button>";
                 }
             }
             catch(PDOException $e)
@@ -178,6 +182,8 @@ if (isset($_GET['limit_reached']))
         </div>
 
     </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
     <script>
     function showDivMan()

@@ -188,8 +188,8 @@ if (isset($_POST['submit']))
             <label>Age</label>
             <input type="text" name="age" maxlength="2" placeholder="Your age">
         </div>
-    <button class="ui primary button" name="submit" type="submit">Save changes</button>
-    <button class="ui negative button" formaction="profile.php">Discard</button>
+    <button class="ui black button" name="submit" type="submit">Save changes</button>
+    <button class="ui black button" formaction="profile.php">Discard</button>
     </form>
 </body>
 </html>

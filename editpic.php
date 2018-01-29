@@ -14,7 +14,7 @@
             <input type="file" name="fileToUpload" id="fileToUpload"><br><br>
         </div>
         <br><br>
-        <button onclick="newPic()" class="ui primary button">make profile picture</button>
+        <button onclick="newPic()" class="ui black button">make profile picture</button>
     </form>
 </body>
 </html>
